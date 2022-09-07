@@ -1,6 +1,7 @@
 import java.util.Scanner;
 public class Games {
 	public static FizzBuzz fizzBuzz = new FizzBuzz();
+	public static Hangman hangman = new Hangman();
 	
 	public static void main(String[] args) {
 		boolean playing = true;
@@ -8,6 +9,7 @@ public class Games {
 		while (playing) {
 			System.out.println("Please select a Game to play:");
 			System.out.println("1. FizzBuzz");
+			System.out.println("2. Hangman");
 			System.out.print(">");
 			playGame(input.nextLine().toLowerCase());
 			System.out.println("Play another game?");
@@ -21,6 +23,9 @@ public class Games {
 		switch (gameName) {
 			case "fizzbuzz" :
 				fizzBuzz.playGame();
+				break;
+			case "hangman" :
+				hangman.playGame();
 				break;
 		}
 			
