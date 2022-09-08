@@ -27,10 +27,16 @@ public class Hangman {
 	        	splitWord.add(userWord.charAt(i));
 	        	solvedWord.add('_');
 	        }
-	        while (incorrectGuesses < 6) {
+	        while (incorrectGuesses < 6 && playing) {
 	        	System.out.println(drawBoard(checkGuess()));
-	        	System.out.printf("Enter your guess: ");
-	        	userGuess = input.nextLine().charAt(0);
+	        	if (solvedWord.contains('_')) {
+	        		System.out.printf("Enter your guess: ");
+		        	userGuess = input.nextLine().charAt(0);
+	        	} else {
+	        		System.out.println("You guessed the word!");
+	        		playing = false;
+	        	}
+	        	
 	        }
 	        
 		}
@@ -38,6 +44,7 @@ public class Hangman {
 	
 	public String checkGuess() {
 		boolean goodGuess = false;
+		String solvedWordStr = "";
 		for (int i = 0; i < userWord.length(); i++) {
 			if (splitWord.get(i) == userGuess) {
 				solvedWord.set(i, userGuess);
@@ -47,7 +54,10 @@ public class Hangman {
 		if (!goodGuess) {
 			incorrectGuesses++;
 		}
-		return solvedWord.toString();
+		for (char letter : solvedWord) {
+			solvedWordStr += letter;
+		}
+		return solvedWordStr;
 	}
 	
 	public String drawBoard(String line7) {
